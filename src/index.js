@@ -2,6 +2,7 @@ const express = require('express')
 const conectarDB = require('./config/db')
 const routerAutor = require('./routes/autorRoutes')
 const routerLibro = require('./routes/libroRoutes')
+const redisClient = require('./config/redisClient')
 require('dotenv').config()
 
 const app = express()
@@ -16,6 +17,11 @@ app.use('/libros', routerLibro)
 
 // Conexión a MongoDB
 conectarDB()
+
+//Conexión a Redis
+redisClient.connect()
+    .then(() => console.log('Conectado a Redis'))
+    .catch(console.error)
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT}`)

@@ -9,7 +9,12 @@ const autorSchema = new mongoose.Schema({
     nacionalidad: {
         type: String,
         required: true
-    }
+    },
+    libros: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Libro',
+        required: true
+    }]
 }, { strict: false })
 
 module.exports = mongoose.model('Autor', autorSchema)

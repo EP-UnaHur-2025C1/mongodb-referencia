@@ -13,11 +13,11 @@ const libroSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Genero es requerido']
     },
-    autor: {
+    autores: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Autor',
         required: true
-    }
+    }]
 }, { strict: false })
 
 module.exports = mongoose.model('Libro', libroSchema)
